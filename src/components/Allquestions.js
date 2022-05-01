@@ -130,13 +130,13 @@ export default class Allquestions extends Component {
         }
     }
 
-    // async componentDidMount(){
-    //     let url="https://opentdb.com/api.php?amount=10"
-    //     let data=await fetch(url);
-    //     let parsedData=await data.json();
-    //     this.setState({quest: parsedData.results})
-    //     console.log(parsedData);
-    // }
+    async componentDidMount(){
+        let url="https://opentdb.com/api.php?amount=10"
+        let data=await fetch(url);
+        let parsedData=await data.json();
+        this.setState({quest: parsedData.results})
+        console.log(parsedData);
+    }
     scoreKeeper=(sc)=>{
         this.setState({"score":sc});
     }
