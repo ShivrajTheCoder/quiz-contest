@@ -1,10 +1,11 @@
 import React from 'react'
 import Login from './accountcomponents/Login'
 import Allquestions from './Allquestions'
+import { iscore } from './Question'
 
 export default function Home() {
   const showScore=()=>{
-    console.log(score);
+    console.log(iscore);
   }
   return (
     <div className='container'>

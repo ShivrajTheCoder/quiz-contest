@@ -1,28 +1,30 @@
-import React from 'react'
+import React,{useState} from 'react'
 // import PropTypes from 'prop-types'
-
+let s=0;
 function Question(props) {
     let q = props;
-    let score=0;
-    
+    const {scoreKeeper}=props;
+
+    const diableBtns=(buttons)=>{
+        buttons.forEach(button=>{
+            button.disabled=true;
+        })
+    }
+
+
     const calculateScore=(evt)=>{
         let ide="#"+evt.target.id;
         let btns=document.querySelectorAll(ide);
-        btns.forEach(button=>{
-            button.disabled=true;
-        })
-        score++;
-        console.log(score);
+        
+        diableBtns(btns);
+        s++;
+        scoreKeeper(s);
     }
 
     const wrongAnswer=(evt)=>{
         let ide="#"+evt.target.id;
         let btns=document.querySelectorAll(ide);
-        btns.forEach(button=>{
-            button.disabled=true;
-        })
-        // console.log(btns);
-        
+        diableBtns(btns);
     }
     
     let options = [];
@@ -37,7 +39,7 @@ function Question(props) {
                         options.push(<button onClick={wrongAnswer} key={ele} type='button' className="btn btn-warning mx-3 my-2" id={q.cans} >{ele}</button>)
                     })}
                     {options.sort(() => Math.random() - 0.5)}
-
+                    
                 </div>
             </div>
         </div>
@@ -47,7 +49,7 @@ function Question(props) {
 // Question.propTypes = {
 
 // }
-
+export const iscore=s;
 export default Question
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Question from './Question';
+import Question, { iscore } from './Question';
 
 export default class Allquestions extends Component {
     quest = [
@@ -121,11 +121,12 @@ export default class Allquestions extends Component {
             ]
         }
     ]
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            quest:this.quest,
-            loading:false
+        this.state = {
+            quest: this.quest,
+            loading: false,
+            score:0
         }
     }
 
@@ -136,14 +137,23 @@ export default class Allquestions extends Component {
     //     this.setState({quest: parsedData.results})
     //     console.log(parsedData);
     // }
-  render() {
-            return(
-      <div className="row">
-        {this.state.quest.map((q)=>{
-            return <div key={q.question}> <Question key={q.question} question={q.question} 
-            category={q.category} type={q.type} cans={q.correct_answer} inans={q.incorrect_answers}/> </div>
-        })}
-      </div >
-    )
-  }
+    scoreKeeper=(sc)=>{
+        this.setState({"score":sc});
+    }
+    render() {
+        return (
+            <div>
+                <button type="button" class="btn btn-light">Score:{this.state.score}</button>
+                <div className="row">
+                    {this.state.quest.map((q) => {
+                        return <div key={q.question}> <Question key={q.question} question={q.question}
+                            category={q.category} type={q.type} cans={q.correct_answer} inans={q.incorrect_answers} scoreKeeper={this.scoreKeeper}/>
+                        </div>
+
+                    })
+                    }
+                </div >
+            </div>
+        )
+    }
 }
